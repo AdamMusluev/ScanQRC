@@ -4,6 +4,7 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import BarcodeMask from "react-native-barcode-mask";
 
 const Scanner = () => {
+
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -25,20 +26,26 @@ const Scanner = () => {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text>ADAM</Text>
-      </View>
       <BarCodeScanner
-  
         onBarCodeScanned={scanned ? undefined : handleSuccess}
         style={StyleSheet.absoluteFillObject}
-        />
-      <BarcodeMask edgeColor="#fff" showAnimatedLine width={350} height={150} outerMaskOpacity={0.8} />
-        {scanned && (
-          <View style={styles.buttonContainer}> 
-            <Button style={styles.button_1} title="tap to Scan again" onPress={() => setScanned(false)} />
-          </View>
-        )}
+      />
+      <BarcodeMask
+        edgeColor="#fff"
+        showAnimatedLine
+        width={350}
+        height={200}
+        outerMaskOpacity={0.8}
+      />
+      {scanned && (
+        <View style={styles.btnContainer}>
+          <Button
+            style={styles.button_1}
+            title="tap to Scan again"
+            onPress={() => setScanned(false)}
+          />
+        </View>
+      )}
     </View>
   );
 };
@@ -48,13 +55,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  buttonContainer: {
-    alignItems: 'center',
+  btnContainer: {
+    alignItems: "center",
     width: 350,
     marginTop: 100,
   },
   button_1: {
     padding: 20,
-    color: '#000'
-  }
+    color: "#000",
+  },
 });
